@@ -1,0 +1,155 @@
+
+<html>
+	<head>
+    	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    	<link href="./clock.css" rel="stylesheet">
+        <script src="./clock.js"></script>
+        <script src="./Cross-Domain-Ajax.js"></script>
+		
+		<style>
+			.col-xs-4, .col-xs-12 {
+				height: 100%;
+				color: white;
+				text-align: center;
+				font-size: 30px;
+				font-family: Batang;
+			}
+			.col-xs-4 > div, .col-xs-12 > div {
+				position: relative;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+            #ipinfo > div{             
+				height: 100%; 
+				top: 50%;
+				transform: translateY(-50%);   
+                color:black;
+                background:url('../SainTfactorStudiosIP/WingedTTransparent.png');
+                background-repeat: no-repeat; 
+                background-position: center;
+                background-size: 68%;
+            }
+				
+		</style>
+
+		<script>
+		$(function(){
+		
+			//IP Address
+			$.ajax( "http://jsonip.com/" ).success(function(data){
+				$("#ipinfo>div").html("<div>SainTfactor Studios</div><div style='position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%;'>Your IP: " + data.ip + "</div>");
+			});
+
+			//Ticker
+			$.ajax( "http://api.reddit.com/r/worldnews/hot?limit=100" ).success(function(data){
+				var newsTicker = "";
+				$.each(data.data.children, function(i, val){ newsTicker += val.data.title.substring(0, 100) + ((val.data.title.length > 100) ? "..." : "") + " &bull; "; });
+				$("#ticker>div>marquee").html(newsTicker);
+			});
+
+			//Clock
+			Phhht.Clock.setUp()
+			
+			//Bible
+			var currentVerseName = "";
+			var currentVerseNumber = "";
+			$.ajax("./verseNumbers.json").success(function(data){
+				var minutesinyear = 525949;
+				var totalNumberOfVerses = 31102;			
+				var minutesToShowVerse = minutesinyear/totalNumberOfVerses;
+
+				var currentDay = getDayFromDate(new Date());
+				var minutesElapsed = ((currentDay - 1) * 1440) + ((new Date()).getHours() * 60) + (new Date()).getMinutes();
+
+				var verseNeeded = Math.floor(minutesElapsed/minutesToShowVerse);
+				currentVerseNumber = verseNeeded;
+
+				var bookname = "";				
+				var chapternumber = 0;				
+				var versenumber = 0;
+				
+				var done = false;
+				$.each(data.books, function(i1, val1){
+					if(verseNeeded - val1.verses > 0){
+						verseNeeded = verseNeeded - val1.verses;
+					}
+					else if(!done){
+						bookname = val1.name;
+						$.each(val1.chapterverses, function(i2, val2){
+							if(verseNeeded - val2 > 0){
+								verseNeeded = verseNeeded - val2;
+							}
+							else if(!done){
+								chapternumber = i2;
+								versenumber = verseNeeded;
+								done = true;
+							}
+						});
+					}
+				});
+
+				currentVerseName = (bookname + " " + chapternumber + ":" + versenumber);
+					
+				$.ajax({ url: "https://getbible.net/json?p=" + encodeURIComponent(currentVerseName) + "&v=nasb", type: "GET", data: {} }).done(function(data){
+					var removedhtml = data.results[0].split("<body>")[1].split("</body>")[0];
+					var jsonParsed = $.parseJSON(removedhtml.substring(1, removedhtml.length - 2))
+					$("#bibleverse").html(jsonParsed.book[0].chapter["" + versenumber].verse + "<br>-" + currentVerseName + " (NASB)");
+					fixFontSize();
+				});
+			});
+
+			//Helper Methods
+			function getDayFromDate(now){
+				var start = new Date(now.getFullYear(), 0, 0);
+				var diff = now - start;
+				var oneDay = 1000 * 60 * 60 * 24;
+				var day = Math.floor(diff / oneDay);
+				return day;
+			}
+
+			function countLines(divName) {
+				var divHeight = document.getElementById(divName).offsetHeight;
+				var lineHeight = parseInt($("#" + divName).css("line-height"));
+				var lines = divHeight / lineHeight;
+				return lines;
+			}
+						
+            $(window).on("resize", fixFontSize);
+			function fixFontSize()
+			{
+				$("#bibleverse").css("line-height", ($("#bibleverse").height()/countLines("bibleverse")) + "px");
+				$("#bibleverse").css("text-align", "left");
+			}
+			fixFontSize();
+
+		});
+		</script>
+    </head>
+    <body>
+    	<div class="container-fluid">
+          <div class="row" style="height:45%;">
+            <div id="weather" class="col-xs-4" style="background-color:#F17200;"><div>Weather Coming Soon</div></div>
+            <div id="technews" class="col-xs-4" style="background-color:#1239A2;"><div>Tech News Coming Soon</div></div>
+            <div id="ipinfo" class="col-xs-4" style="background-color:white;"><div>IP Info Coming Soon</div></div>
+          </div>
+          <div class="row" style="height:45%;">
+            <div id="bibleverse" class="col-xs-4" style="background-color:#1239A2;"><div>Bible Verse Coming Soon</div></div>
+            <div id="clock" class="col-xs-4" style="background-color:#F17200;"><div>
+				<div id="clockrun">
+					<div id="hour"></div>
+					<div id="minute"></div>
+					<div id="second"></div>
+					<div id="center"></div>
+				</div>
+			</div></div>
+            <div id="sports" class="col-xs-4" style="background-color:black;"><div>Sports Feed Coming Soon</div></div>
+          </div>
+          <div class="row" style="height:10%;">
+            <div id="ticker" class="col-xs-12" style="background-color:#00BB17;"><div><marquee>Ticker Feed Coming Soon</marquee></div></div>
+          </div>
+        </div>
+    </body>
+</html>
+
