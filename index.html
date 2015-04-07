@@ -60,8 +60,9 @@
 				var totalNumberOfVerses = 31102;			
 				var minutesToShowVerse = minutesinyear/totalNumberOfVerses;
 
-				var currentDay = getDayFromDate(new Date());
-				var minutesElapsed = ((currentDay - 1) * 1440) + ((new Date()).getHours() * 60) + (new Date()).getMinutes();
+                var currentDate = new Date();
+				var currentDay = getDayFromDate(new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 0, 0, 0)) + 1;
+				var minutesElapsed = ((currentDay - 1) * 1440) + ((currentDate).getHours() * 60) + (currentDate).getMinutes();
 
 				var verseNeeded = Math.floor(minutesElapsed/minutesToShowVerse);
 				currentVerseNumber = verseNeeded;
