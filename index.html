@@ -7,13 +7,14 @@
     	<link href="./clock.css" rel="stylesheet">
         <script src="./clock.js"></script>
         <script src="./Cross-Domain-Ajax.js"></script>
+        <script src="./jquery.textfill.js"></script>
 		
 		<style>
 			.col-xs-4, .col-xs-12 {
 				height: 100%;
 				color: white;
 				text-align: center;
-				font-size: 30px;
+				font-size: 5.5vmin;
 				font-family: Batang;
 			}
 			.col-xs-4 > div, .col-xs-12 > div {
@@ -24,13 +25,15 @@
             #ipinfo > div{             
 				height: 100%; 
 				top: 50%;
-				transform: translateY(-50%);   
-                color:black;
+				transform: translateY(-50%);  
                 background:url('../SainTfactorStudiosIP/WingedTTransparent.png');
                 background-repeat: no-repeat; 
                 background-position: center;
                 background-size: 68%;
             }
+			#bibleverse {
+				text-align: left;
+			}
 				
 		</style>
 
@@ -46,7 +49,7 @@
 			$.ajax( "http://api.reddit.com/r/worldnews/hot?limit=100" ).success(function(data){
 				var newsTicker = "";
 				$.each(data.data.children, function(i, val){ newsTicker += val.data.title.substring(0, 100) + ((val.data.title.length > 100) ? "..." : "") + " &bull; "; });
-				$("#ticker>div>marquee").html(newsTicker);
+				$("#ticker>div").html("<marquee>" + newsTicker + "</marquee>");
 			});
 
 			//Clock
@@ -96,7 +99,8 @@
 				$.ajax({ url: "https://getbible.net/json?p=" + encodeURIComponent(currentVerseName) + "&v=nasb", type: "GET", data: {} }).done(function(data){
 					var removedhtml = data.results[0].split("<body>")[1].split("</body>")[0];
 					var jsonParsed = $.parseJSON(removedhtml.substring(1, removedhtml.length - 2))
-					$("#bibleverse").html(jsonParsed.book[0].chapter["" + versenumber].verse + "<br>-" + currentVerseName + " (NASB)");
+					$("#bibleverse").html("<span style=\"height:100%\">" + jsonParsed.book[0].chapter["" + versenumber].verse + "<br>-" + currentVerseName + " (NASB)</span>");
+
 					fixFontSize();
 				});
 			});
@@ -117,13 +121,19 @@
 				return lines;
 			}
 						
+			
             $(window).on("resize", fixFontSize);
 			function fixFontSize()
 			{
-				$("#bibleverse").css("line-height", ($("#bibleverse").height()/countLines("bibleverse")) + "px");
-				$("#bibleverse").css("text-align", "left");
+				//$("#bibleverse").css("line-height", ($("#bibleverse").height()/countLines("bibleverse")) + "px");
+				//$("#bibleverse").css("text-align", "left");
+
+				console.log("stuff");
+				$("#bibleverse").textfill({ maxFontPixels: 0 });
 			}
 			fixFontSize();
+			
+
 
 		});
 		</script>
@@ -131,13 +141,13 @@
     <body>
     	<div class="container-fluid">
           <div class="row" style="height:45%;">
-            <div id="weather" class="col-xs-4" style="background-color:#F17200;"><div>Weather Coming Soon</div></div>
-            <div id="technews" class="col-xs-4" style="background-color:#1239A2;"><div>Tech News Coming Soon</div></div>
-            <div id="ipinfo" class="col-xs-4" style="background-color:white;"><div>IP Info Coming Soon</div></div>
+            <div id="weather" class="col-xs-4" style="background-color:#1E6912;"><div>Weather Coming Soon</div></div>
+            <div id="technews" class="col-xs-4" style="background-color:#7C151D;"><div>Tech News Coming Soon</div></div>
+            <div id="ipinfo" class="col-xs-4" style="background-color:#1E6912;"><div>IP Info Coming Soon</div></div>
           </div>
           <div class="row" style="height:45%;">
-            <div id="bibleverse" class="col-xs-4" style="background-color:#1239A2;"><div>Bible Verse Coming Soon</div></div>
-            <div id="clock" class="col-xs-4" style="background-color:#F17200;"><div>
+            <div id="bibleverse" class="col-xs-4" style="background-color:#7C151D;"><div>Bible Verse Coming Soon</div></div>
+            <div id="clock" class="col-xs-4" style="background-color:#1E6912;"><div>
 				<div id="clockrun">
 					<div id="hour"></div>
 					<div id="minute"></div>
@@ -145,10 +155,10 @@
 					<div id="center"></div>
 				</div>
 			</div></div>
-            <div id="sports" class="col-xs-4" style="background-color:black;"><div>Sports Feed Coming Soon</div></div>
+            <div id="sports" class="col-xs-4" style="background-color:#7C151D;"><div>Sports Feed Coming Soon</div></div>
           </div>
           <div class="row" style="height:10%;">
-            <div id="ticker" class="col-xs-12" style="background-color:#00BB17;"><div><marquee>Ticker Feed Coming Soon</marquee></div></div>
+            <div id="ticker" class="col-xs-12" style="background-color:#807F15;"><div></div></div>
           </div>
         </div>
     </body>
