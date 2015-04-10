@@ -1,0 +1,24 @@
+.col-xs-4, .col-xs-12 {
+    height: 100%;
+    color: white;
+    text-align: center;
+    font-size: 5.5vmin;
+    font-family: Batang;
+}
+.col-xs-4 > div, .col-xs-12 > div {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+#ipinfo > div{             
+    height: 100%; 
+    top: 50%;
+    transform: translateY(-50%);  
+    background:url('/SainTfactorStudiosIP/WingedTTransparent.png');
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: 68%;
+}
+#bibleverse {
+    text-align: left;
+}
