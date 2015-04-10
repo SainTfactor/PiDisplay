@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @preserve  textfill
  * @name      jquery.textfill.js
  * @author    Russ Painter
@@ -266,7 +266,6 @@
 			}
 			else {
 				var fontSizeFinal = Math.min(fontSizeHeight, fontSizeWidth);
-
 				ourText.css('font-size', fontSizeFinal);
 
 				if (Opts.changeLineHeight)
@@ -287,7 +286,8 @@
 			if ((ourText.width()  > maxWidth) ||
 				(ourText.height() > maxHeight && !Opts.widthOnly)) {
 
-				ourText.css('font-size', oldFontSize);
+                //I commented this out because it fails in fullscreen, but only by a little bit, and I wanted it to stay the way is was instead of reverting back
+				//ourText.css('font-size', oldFontSize);
 
 				// Failure callback
 				if (Opts.fail)
