@@ -19,6 +19,10 @@
     background-position: center;
     background-size: 68%;
 }
-#bibleverse {
+#bibleverse, #sports, #technews, #weather {
     text-align: left;
+}
+#sports > div, #technews > div, #weather > div {
+    top: 0;
+    transform: none;
 }
