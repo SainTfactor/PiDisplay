@@ -17,8 +17,8 @@ $(function(){
 			var tempList = "";			
 
 			tempList += data.list[0].temp.day + ", ";	
-			tempList += data.list[0].temp.day + ", ";	
-			tempList += data.list[0].temp.day;	
+			tempList += data.list[1].temp.day + ", ";	
+			tempList += data.list[2].temp.day;	
 
             $("#weatherbottom").html(tempList);
         });
