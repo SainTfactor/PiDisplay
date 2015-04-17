@@ -26,3 +26,21 @@
     top: 0;
     transform: none;
 }
+#weatherDay1, #weatherDay2, #weatherDay3 { 
+	display: inline-block; 
+	text-align: center;
+    font-size: 4vmin;
+	width: 33%; 
+	height:100%; 
+} 
+#weatherDay1>img, #weatherDay2>img, #weatherDay3>img {
+	height: 60%; 
+}
+#weathertop>div>img, #weathertop>div>div {
+	height: 60%;  
+	display: inline; 
+    font-size: 11vmin;
+}
+#weatherbottom {
+	border-top: 1px solid white;
+}
