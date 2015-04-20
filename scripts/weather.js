@@ -1,6 +1,16 @@
 $(function(){	
     var oneInterval;
     
+    
+    function advanceToNext()
+    {
+        GetWeather();    
+        GetWeather3Day();
+        
+        clearInterval(oneInterval);
+        oneInterval = setInterval(function(){ advanceToNext(); }, 3600000);
+    }
+    
     function GetWeather()
     {
         //IP Address
@@ -39,20 +49,6 @@ $(function(){
             $("#weatherDay3").html(day3);
 
         });
-    }
-    
-    function advanceToNext()
-    {
-        GetWeather();
-        clearInterval(oneInterval);
-        oneInterval = setInterval(function(){ advanceToNext(); }, 3600000);
-    }
-    
-    function advanceToNext3Day()
-    {
-        GetWeather3Day();
-        clearInterval(oneInterval);
-        oneInterval = setInterval(function(){ advanceToNext(); }, 86400000);
     }
 
 	function getWeatherIconFromCodeAndIswindy(code, isWindy)
@@ -211,7 +207,6 @@ $(function(){
 	} 
     
     advanceToNext();
-    advanceToNext3Day();
 });
 
 
