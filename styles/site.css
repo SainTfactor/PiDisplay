@@ -7,13 +7,13 @@
 }
 .col-xs-4 > div, .col-xs-12 > div {
     position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    /*top: 50%;
+    transform: translateY(-50%);*/
 }
 #ipinfo > div{             
     height: 100%; 
-    top: 50%;
-    transform: translateY(-50%);  
+    /*top: 50%;
+    transform: translateY(-50%);*/  
     background:url('/SainTfactorStudiosIP/WingedTTransparent.png');
     background-repeat: no-repeat; 
     background-position: center;
@@ -26,10 +26,13 @@
     top: 0;
     transform: none;
 }
+#clock > div{
+    margin-top: 20px;
+}
 #weatherDay1, #weatherDay2, #weatherDay3 { 
 	display: inline-block; 
 	text-align: center;
-    font-size: 4vmin;
+    font-size: 3vmin;
 	width: 33%; 
 	height:100%; 
 } 

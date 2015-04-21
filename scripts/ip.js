@@ -5,7 +5,8 @@ $(function(){
     {
         //IP Address
         $.ajax( "http://jsonip.com/" ).success(function(data){
-            $("#ipinfo>div").html("<div>SainTfactor Studios</div><div style='position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%;'>" + data.ip + "</div>");
+            //left: 50%; transform: translateX(-50%); width: 100%;
+            $("#ipinfo>div").html("<div>SainTfactor Studios</div><div style='position: absolute; bottom: 0; width: 80%; text-align: center; margin-left: 10%; margin-right: 10%;'>" + data.ip + "</div>");
         });
     }
     

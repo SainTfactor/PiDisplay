@@ -22,7 +22,7 @@ $(function(){
 
 			day += "<div style=\"font-size:1.5vmin; display:inline-block; width:50%; text-align:left;\">Humidity</div><div style=\"font-size:1.5vmin; display:inline-block; width:50%; text-align:right;\">Wind Speed</div>";
 
-			day += "<div style=\"display:inline-block; width:50%; text-align:left;\">" + data.main.humidity + "%</div><div style=\"display:inline-block; width:50%; text-align:right;\">" + data.wind.speed + " mph</div>";
+			day += "<div style=\"display:inline-block; width:50%; text-align:left; font-size:4.8vmin;\">" + data.main.humidity + "%</div><div style=\"display:inline-block; width:50%; text-align:right; white-space: nowrap; font-size:4.8vmin;\">" + data.wind.speed + " mph</div>";
 
 			$("#weathertop").html(day);
         });
