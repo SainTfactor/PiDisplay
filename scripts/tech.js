@@ -39,7 +39,7 @@ $(function(){
     $(window).on("resize", fixFontSize);
     function fixFontSize()
     {
-        $("#technews>div>div").textfill({ maxFontPixels: 0 });
+        $("#technews>div>div").textfill({ maxFontPixels: Math.floor($("#technews").css("width").split("px")[0]/12) });
     }
     
     function advanceToNext()

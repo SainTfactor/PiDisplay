@@ -39,7 +39,7 @@ $(function(){
     $(window).on("resize", fixFontSize);
     function fixFontSize()
     {
-        $("#sports>div>div").textfill({ maxFontPixels: 0 });
+        $("#sports>div>div").textfill({ maxFontPixels: Math.floor($("#sports").css("width").split("px")[0]/12) });
     }
     
     function advanceToNext()
