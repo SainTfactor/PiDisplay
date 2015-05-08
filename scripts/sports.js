@@ -6,7 +6,7 @@ $(function(){
     function GetSports()
     {
         //IP Address
-        $.ajax( "http://api.reddit.com/r/cfb/hot?limit=100" ).success(function(data){
+        $.ajax( "http://api.reddit.com/r/CFB/top/?sort=top&t=week&limit=100" ).success(function(data){
 			$.each(data.data.children, function(i, val){
 				SportsArray.push({ thumbnail: val.data.thumbnail, title: val.data.title });
 			});
