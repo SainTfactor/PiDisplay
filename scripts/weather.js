@@ -153,6 +153,7 @@ $(function(){
 				break;
 			case 801:
 				iconURL += "30";
+				break;
 			case 802:
 			case 803:
 				iconURL += "28";
