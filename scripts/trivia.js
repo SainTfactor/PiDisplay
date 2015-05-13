@@ -63,6 +63,10 @@ $(function(){
         {
             retVal = retVal[5].toUpperCase() + retVal.substring(6);            
         }
+        if(retVal.substring(0,5).toLowerCase() == "til, ")
+        {
+            retVal = retVal[5].toUpperCase() + retVal.substring(6);            
+        }
         if(retVal.substring(0,4).toLowerCase() == "til ")
         {
             retVal = retVal[4].toUpperCase() + retVal.substring(5);            
