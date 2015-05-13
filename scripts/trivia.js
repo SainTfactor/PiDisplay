@@ -43,9 +43,21 @@ $(function(){
     {
         var retVal = title;
         
+        if(retVal.substring(0,10).toLowerCase() == "til that, ")
+        {
+            retVal = retVal[10].toUpperCase() + retVal.substring(11);            
+        }
         if(retVal.substring(0,9).toLowerCase() == "til that ")
         {
             retVal = retVal[9].toUpperCase() + retVal.substring(10);            
+        }
+        if(retVal.substring(0,6).toLowerCase() == "til - ")
+        {
+            retVal = retVal[6].toUpperCase() + retVal.substring(7);            
+        }
+        if(retVal.substring(0,5).toLowerCase() == "til- ")
+        {
+            retVal = retVal[5].toUpperCase() + retVal.substring(6);            
         }
         if(retVal.substring(0,5).toLowerCase() == "til: ")
         {
