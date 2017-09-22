@@ -41,10 +41,8 @@ $(function(){
             });
 
             currentVerseName = (bookname + " " + chapternumber + ":" + versenumber);
-            
-            $.ajax({ url: "https://getbible.net/json?p=" + encodeURIComponent(currentVerseName) + "&v=nasb", type: "GET", data: {} }).done(function(data){
-                var removedhtml = data.results[0].split("<body>")[1].split("</body>")[0];
-                var jsonParsed = $.parseJSON(removedhtml.substring(1, removedhtml.length - 2))
+            console.log("https://getbible.net/json?p=" + encodeURIComponent(currentVerseName));
+            $.getJSON("https://getbible.net/json?p=" + encodeURIComponent(currentVerseName) + "&callback=?", {}, function(jsonParsed){
                 $("#bibleverse>div").html("<span style=\"height:100%\">" + jsonParsed.book[0].chapter["" + versenumber].verse + "<br>-" + currentVerseName + " (NASB)</span>");
 
                 fixFontSize();                
