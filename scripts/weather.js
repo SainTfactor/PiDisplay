@@ -14,7 +14,7 @@ $(function(){
     function GetWeather()
     {
         //IP Address
-        $.ajax( "http://api.openweathermap.org/data/2.5/weather?id=4830796" ).success(function(data){
+        $.ajax( "http://api.openweathermap.org/data/2.5/weather?id=4830796&APPID=131daf10a8695dcda468f522a209c5e4" ).success(function(data){
 			var day = "";
 
 			day += "<div style=\"width:100%;\"><img src=\"" + getWeatherIconFromCodeAndIswindy(data.weather[0].id, data.wind.speed > 20) + "\" />";
@@ -31,7 +31,7 @@ $(function(){
     function GetWeather3Day()
     {
         //IP Address
-        $.ajax( "http://api.openweathermap.org/data/2.5/forecast/daily?id=4830796" ).success(function(data){
+        $.ajax( "http://api.openweathermap.org/data/2.5/forecast?id=4830796&APPID=131daf10a8695dcda468f522a209c5e4" ).success(function(data){
 			var day1 = "";		
 			var day2 = "";		
 			var day3 = "";		
@@ -40,9 +40,9 @@ $(function(){
 			day2 += "<img src=\"" + getWeatherIconFromCodeAndIswindy(data.list[2].weather[0].id, data.list[2].speed > 20) + "\" />";
 			day3 += "<img src=\"" + getWeatherIconFromCodeAndIswindy(data.list[3].weather[0].id, data.list[3].speed > 20) + "\" />";
 
-			day1 += "<div>" + KelvinToFahrenheit(data.list[1].temp.min) + "&deg;-" + KelvinToFahrenheit(data.list[1].temp.max) + "&deg;</div>";	
-			day2 += "<div>" + KelvinToFahrenheit(data.list[2].temp.min) + "&deg;-" + KelvinToFahrenheit(data.list[2].temp.max) + "&deg;</div>";	
-			day3 += "<div>" + KelvinToFahrenheit(data.list[3].temp.min) + "&deg;-" + KelvinToFahrenheit(data.list[3].temp.max) + "&deg;</div>";		
+			day1 += "<div>" + KelvinToFahrenheit(data.list[1].main.temp_min) + "&deg;-" + KelvinToFahrenheit(data.list[1].main.temp_max) + "&deg;</div>";	
+			day2 += "<div>" + KelvinToFahrenheit(data.list[2].main.temp_min) + "&deg;-" + KelvinToFahrenheit(data.list[2].main.temp_max) + "&deg;</div>";	
+			day3 += "<div>" + KelvinToFahrenheit(data.list[3].main.temp_min) + "&deg;-" + KelvinToFahrenheit(data.list[3].main.temp_max) + "&deg;</div>";		
 
             $("#weatherDay1").html(day1);
             $("#weatherDay2").html(day2);
