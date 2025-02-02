@@ -11,7 +11,7 @@
  * @copyright (c) 2009 Russ Painter
  * @license   MIT License
  * @homepage  https://github.com/jquery-textfill/jquery-textfill
- * @example   http://jquery-textfill.github.io/jquery-textfill/index.html
+ * @example   //jquery-textfill.github.io/jquery-textfill/index.html
  */
 ; (function($) {
 
@@ -147,7 +147,7 @@
 			// consider implementing something akin to
 			// Daniel Hoffmann's answer here:
 			//
-			//     http://stackoverflow.com/a/17433451/1094964
+			//     //stackoverflow.com/a/17433451/1094964
 			//
 
 			while (minFontPixels < (maxFontPixels - 1)) {

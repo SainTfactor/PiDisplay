@@ -6,7 +6,7 @@ $(function(){
     function GetTrivia()
     {
         //IP Address
-        $.ajax( "http://api.reddit.com/r/todayilearned/?limit=100", dataType="jsonp" ).success(function(data){
+        $.ajax( "//api.reddit.com/r/todayilearned/?limit=100", dataType="jsonp" ).success(function(data){
 			$.each(data.data.children, function(i, val){
 				TriviaArray.push({ thumbnail: val.data.thumbnail, title: val.data.title });
 			});

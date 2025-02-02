@@ -1,6 +1,6 @@
 /**
  * jQuery.marquee - scrolling text like old marquee element
- * @author Aamir Afridi - aamirafridi(at)gmail(dot)com / http://aamirafridi.com/jquery/jquery-marquee-plugin
+ * @author Aamir Afridi - aamirafridi(at)gmail(dot)com / //aamirafridi.com/jquery/jquery-marquee-plugin
  */;
 (function($) {
     $.fn.marquee = function(options) {
@@ -381,7 +381,7 @@
     $.fn.marquee.defaults = {
         //If you wish to always animate using jQuery
         allowCss3Support: true,
-        //works when allowCss3Support is set to true - for full list see http://www.w3.org/TR/2013/WD-css3-transitions-20131119/#transition-timing-function
+        //works when allowCss3Support is set to true - for full list see //www.w3.org/TR/2013/WD-css3-transitions-20131119/#transition-timing-function
         css3easing: 'linear',
         //requires jQuery easing plugin. Default is 'linear'
         easing: 'linear',

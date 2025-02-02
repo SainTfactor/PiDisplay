@@ -16,7 +16,8 @@ $(function(){
             var verseNeeded = Math.floor(minutesElapsed/minutesToShowVerse);
             currentVerseNumber = verseNeeded;
 
-            var bookname = "";				
+            var bookname = "";
+            var booknum = 1;
             var chapternumber = 0;				
             var versenumber = 0;
 
@@ -24,6 +25,7 @@ $(function(){
             $.each(data.books, function(i1, val1){
                 if(verseNeeded - val1.verses > 0){
                     verseNeeded = verseNeeded - val1.verses;
+                    booknum += 1;
                 }
                 else if(!done){
                     bookname = val1.name;
@@ -42,8 +44,10 @@ $(function(){
 
             currentVerseName = (bookname + " " + chapternumber + ":" + versenumber);
 
-            $.getJSON("https://getbible.net/json?p=" + encodeURIComponent(currentVerseName) + "&callback=?", {}, function(jsonParsed){ 
-                $("#bibleverse>div").html("<span style=\"height:100%\">" + jsonParsed.book[0].chapter["" + versenumber].verse + "<br>-" + currentVerseName + " (" + jsonParsed.version.toUpperCase() + ")</span>");
+            //$.getJSON("https://getbible.net/json?p=" + encodeURIComponent(currentVerseName) + "&callback=?", {}, function(jsonParsed){ 
+            //$.getJSON("//api.getbible.net/v2/kjv/" + booknum + "/" + chapternumber + ".json?callback=?", {}, function(jsonParsed){ 
+            $.ajax("//api.getbible.net/v2/kjv/" + booknum + "/" + chapternumber + ".json?callback=?", dataType="jsonp" ).success(function(jsonParsed){
+                $("#bibleverse>div").html("<span style=\"height:100%\">" + jsonParsed.verses[versenumber].text + "<br>-" + currentVerseName + " (" + jsonParsed.abbreviation.toUpperCase() + ")</span>");
 
                 fixFontSize();                
             });
