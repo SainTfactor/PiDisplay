@@ -4,7 +4,7 @@ $(function(){
     
     function GetNews()
     {
-        $.ajax( "//api.reddit.com/r/worldnews/hot?limit=100", dataType="jsonp" ).success(function(data){
+        $.ajax( "//old.reddit.com/r/worldnews/hot.json?limit=100", dataType="jsonp" ).success(function(data){
             var newsTicker = "";
             $.each(data.data.children, function(i, val){ newsTicker += val.data.title.substring(0, 100) + ((val.data.title.length > 100) ? "..." : "") + " &bull; "; });
             $("#ticker>div").html(newsTicker);    

@@ -6,7 +6,7 @@ $(function(){
     function GetTech()
     {
         //IP Address
-        $.ajax( "//api.reddit.com/r/technews/hot?limit=100", dataType="jsonp" ).success(function(data){
+        $.ajax( "//old.reddit.com/r/technews/hot.json?limit=100", dataType="jsonp" ).success(function(data){
 			$.each(data.data.children, function(i, val){
 				TechArray.push({ thumbnail: val.data.thumbnail, title: val.data.title });
 			});
