@@ -23,20 +23,22 @@ $(function(){
 
             var done = false;
             $.each(data.books, function(i1, val1){
+                if(done) { return; }
                 if(verseNeeded - val1.verses > 0){
                     verseNeeded = verseNeeded - val1.verses;
                     booknum += 1;
                 }
-                else if(!done){
+                else {
                     bookname = val1.name;
                     $.each(val1.chapterverses, function(i2, val2){
                         if(verseNeeded - val2 > 0){
                             verseNeeded = verseNeeded - val2;
                         }
-                        else if(!done){
+                        else {
                             chapternumber = i2;
                             versenumber = verseNeeded;
                             done = true;
+                            return;
                         }
                     });
                 }
